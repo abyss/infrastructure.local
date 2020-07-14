@@ -1,8 +1,8 @@
 ---
 - hosts: agora
-  become: true
+  become: yes
   roles:
-    - ansible
     - centos-basics
+    - abyss-dotfiles
+    - ansible
     - terraform
-    - user-abyss

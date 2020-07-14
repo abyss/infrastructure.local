@@ -16,11 +16,19 @@
     repo: https://github.com/abyss/dotfiles
     dest: /home/abyss/dotfiles
 
-# TODO: This should be more idempotent
-- name: dotfiles installed
+- name: check if dotfiles installed
+  become: yes
+  become_user: abyss
+  stat:
+    path: /home/abyss/.bashrc
+    follow: no
+  register: bashrc
+
+- name: install dotfiles
   become: yes
   become_user: abyss
   shell: /home/abyss/dotfiles/install.sh
+  when: not (bashrc.stat.islnk is defined and bashrc.stat.islnk)
 
 - name: authorized_keys updated
   become: yes
