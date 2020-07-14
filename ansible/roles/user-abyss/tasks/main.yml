@@ -1,0 +1,32 @@
+---
+- name: user exists
+  become: yes
+  user:
+    name: abyss
+    state: present
+    generate_ssh_key: yes
+    append: yes
+    groups:
+      - wheel
+
+- name: dotfiles installed from git
+  become: yes
+  become_user: abyss
+  git:
+    repo: https://github.com/abyss/dotfiles
+    dest: /home/abyss/dotfiles
+
+# This should be more idempotent
+- name: dotfiles installed
+  become: yes
+  become_user: abyss
+  shell: /home/abyss/dotfiles/install.sh
+
+- name: authorized_keys updated
+  become: yes
+  become_user: abyss
+  get_url:
+    url: https://keys.abyss.dev
+    dest: /home/abyss/.ssh/authorized_keys
+    force: yes
+    mode: 0600

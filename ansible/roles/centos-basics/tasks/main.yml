@@ -15,6 +15,11 @@
     name: epel-release
     state: present
 
+- name: vim installed
+  yum:
+    name: vim
+    state: present
+
 - name: git installed
   yum:
     name: epel-release
