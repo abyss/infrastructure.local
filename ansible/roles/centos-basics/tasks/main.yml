@@ -1,0 +1,37 @@
+---
+- name: sshd installed
+  yum:
+    name: openssh-server
+    state: present
+
+- name: sshd enabled
+  service:
+    name: sshd
+    state: started
+    enabled: true
+
+- name: epel-release installed
+  yum:
+    name: epel-release
+    state: present
+
+- name: git installed
+  yum:
+    name: epel-release
+    state: present
+
+- name: Disallow password authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+  notify: restart ssh
+
+- name: Disallow root SSH access
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+  notify: restart ssh
