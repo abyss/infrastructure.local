@@ -8,7 +8,7 @@
   service:
     name: sshd
     state: started
-    enabled: true
+    enabled: yes
 
 - name: epel-release installed
   yum:
@@ -22,7 +22,7 @@
 
 - name: git installed
   yum:
-    name: epel-release
+    name: git
     state: present
 
 - name: Disallow password authentication
