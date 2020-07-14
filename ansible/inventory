@@ -1,0 +1,4 @@
+erebus ansible_host=192.168.1.201
+arcadia ansible_host=192.168.1.202
+agora ansible_host=192.168.1.203
+pihole ansible_host=192.168.1.254

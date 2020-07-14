@@ -1,0 +1,10 @@
+---
+- name: epel-release installed
+  yum:
+    name: epel-release
+    state: present
+
+- name: ansible installed
+  yum:
+    name: ansible
+    state: present
