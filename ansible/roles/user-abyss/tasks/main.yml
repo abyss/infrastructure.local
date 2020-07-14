@@ -16,7 +16,7 @@
     repo: https://github.com/abyss/dotfiles
     dest: /home/abyss/dotfiles
 
-# This should be more idempotent
+# TODO: This should be more idempotent
 - name: dotfiles installed
   become: yes
   become_user: abyss
